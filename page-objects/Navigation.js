@@ -1,3 +1,4 @@
+import { isDesktopViewPort } from "../utils/isDesktopViewPort"
 
 export class Navigation{
 
@@ -5,6 +6,7 @@ export class Navigation{
         this.page = page
         this.basketCounter = page.locator('[data-qa="header-basket-count"]')
         this.checkoutlink = page.getByRole('link', {name: 'Checkout'})
+        this.mobileBurgerButton = page.locator('[data-qa="burger-button"]')
     }
     
     getBasketCount = async () => {
@@ -16,6 +18,17 @@ export class Navigation{
     }
 
     goToCheckout = async () => {
+        //if mobile viewport, first open the burger menu
+        // ! = is the logical “not” operator
+        // true if desktop
+        // false if mobile -> reverse false -> !false === true
+
+        if (!isDesktopViewPort(this.page)) { 
+            await this.mobileBurgerButton.waitFor()
+            await this.mobileBurgerButton.click()
+        }
+       
+
         await this.checkoutlink.waitFor()
         await this.checkoutlink.click()
         await this.page.waitForURL("/basket")

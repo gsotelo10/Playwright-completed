@@ -8,7 +8,7 @@ import { RegisterPage } from "../page-objects/RegisterPage"
 import { DeliveryDetails } from "../page-objects/DeliveryDetails"
 import { deliveryDetails as userAddress } from "../Data/DeliveryDetails"
 import { PaymentPage } from "../page-objects/PaymentPage"
-
+import { paymentDetails } from "../Data/paymentDetails"
 
 test.only("New user full end-to-end test journey", async ({ page }) => {
      //ProductPage.visit()
@@ -47,6 +47,8 @@ test.only("New user full end-to-end test journey", async ({ page }) => {
      const paymentPage = new PaymentPage(page)
      await paymentPage.activateDiscount()
 
+     await paymentPage.fillPaymentDetails(paymentDetails)
+     await paymentPage.completePayment()
 
 
 })

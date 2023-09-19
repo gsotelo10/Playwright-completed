@@ -3,6 +3,7 @@
 
 import { expect } from "@playwright/test"
 import { Navigation } from "./Navigation" 
+import { isDesktopViewPort } from "../utils/isDesktopViewPort"
 
 export class ProductsPage {
     //Method    
@@ -27,12 +28,20 @@ export class ProductsPage {
         
         //I will instance the method getBasketCount from the Navigation.js
         const navigation = new Navigation(this.page)
-
-        const basketCountBeforeAdding = await navigation.getBasketCount()
+        
+        // only desktop viewport
+        let basketCountBeforeAdding
+        if (isDesktopViewPort(this.page)){
+            basketCountBeforeAdding = await navigation.getBasketCount()
+        }
+        
         await this.addButtons.nth(index).click()
         await expect(sprecificAddButton).toHaveText("Remove from Basket")
-        const basketCountAfterAdding = await navigation.getBasketCount()
-        expect(basketCountAfterAdding).toBeGreaterThan(basketCountBeforeAdding)
+        if (isDesktopViewPort(this.page)){
+            const basketCountAfterAdding = await navigation.getBasketCount()
+            expect(basketCountAfterAdding).toBeGreaterThan(basketCountBeforeAdding)
+        }
+        
     }
 
     sortByCheapest = async () =>{

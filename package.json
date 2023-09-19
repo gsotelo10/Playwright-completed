@@ -10,7 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.36.2"
+    "@playwright/test": "^1.36.2",
+    "@types/node": "^20.6.0"
   },
   "dependencies": {
     "uuid": "^9.0.0"
