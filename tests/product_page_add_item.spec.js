@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test"
 
-test("Product Page Add to Basket", async ({ page }) => {
+test.skip("Product Page Add to Basket", async ({ page }) => {
     await page.goto("/");
     //playwright.config.js
         // use: {

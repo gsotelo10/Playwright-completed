@@ -10,7 +10,7 @@ import { deliveryDetails as userAddress } from "../Data/DeliveryDetails"
 import { PaymentPage } from "../page-objects/PaymentPage"
 import { paymentDetails } from "../Data/paymentDetails"
 
-test.only("New user full end-to-end test journey", async ({ page }) => {
+test("New user full end-to-end test journey", async ({ page }) => {
      //ProductPage.visit()
      //instance of the class "visit"
      
