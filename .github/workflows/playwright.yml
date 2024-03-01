@@ -15,7 +15,7 @@
                 - name: Run tests
                   run: |
                     echo "Start the shoppong store application"
-                    ./shopping-store-linux-amd64 &
+                    ./shopping-store-linux-amd64.sh &
                     echo "Install dependecis from lockfile"
                     npm ci
                     echo "Run Playwright tests"
